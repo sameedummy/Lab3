@@ -8,34 +8,37 @@ employee_data = [
     {"name": "Peter", "age": 40, "department": "Sales", "salary": 60000}
 ]
 
+
 def get_employees_by_age_range(age_lower_limit, age_upper_limit):
     result = []
 
     # check for age limits and append the item to result
     for item in employee_data:
         if int(item["age"]) > int(age_lower_limit) and int(item["age"]) < int(age_upper_limit):
-            result.append(item)
-
-    return result
-
+            result.append(item)    
+                                    # the append() method appends each item into the initially empty "result" list.
+    return result   # "item" over here means each item in the employee_data list, which is each dictionary for each
+                    # employee. remember that employee_data is a LIST of DICTIONARIES. "item" is used in a similar way in
+                    # the rest of the functions.
 def calculate_average_salary():
     total = 0
     average = 0
-    for salary in employee_data:
-        total += salary["salary"]
+    for item in employee_data:
+        total += item["salary"]     # this lines constantly adds the values for the "salary" key into the "total" variable.  
 
-    average = total / 6    
+    average = total / 6
 
-    #add your implementation to calculate here
     return average
+
 
 def get_employees_by_dept(department):
     result = []
-
-    # Add your implementation from here
-
+    for item in employee_data:
+        if item["department"] == department:
+            result.append(item) 
 
     return result
+
 
 def display_all_records():
     print(("Name" + "\t" +"Age" +"\t" +"Department" +"\t" +"Salary" ).expandtabs(15))
@@ -73,7 +76,7 @@ def display_main_menu():
 
     elif option == '3':
         age_lower_limit = input("age (Lower Limit) = ")
-        age_upper_limit = input("age (Uper Limit) = ")
+        age_upper_limit = input("age (Upper Limit) = ")
         employee_info = get_employees_by_age_range(age_lower_limit, age_upper_limit)
         display_records(employee_info)
 
